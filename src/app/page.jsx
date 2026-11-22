@@ -1,14 +1,13 @@
 "use client"
 
-export const dynamic = "force-static"
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Background from "@/components/Background";
-import FirstScreen from "@/components/FirstScreen";
-import SecondScreen from "@/components/SecondScreen";
-import LyricsScreen from "@/components/LyricsScreen";
-import Music from "@/components/Music";
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import Background from "@/components/Background"
+import FirstScreen from "@/components/FirstScreen"
+import SecondScreen from "@/components/SecondScreen"
+import LyricsScreen from "@/components/LyricsScreen"
+import ProposalScreen from "@/components/ProposalScreen"
+import Music from "@/components/Music"
 
 export default function Home() {
   const [currentScreen, setCurrentScreen] = useState("first")
@@ -21,6 +20,7 @@ export default function Home() {
       setCurrentScreen("lyrics")
     }} />,
     lyrics: <LyricsScreen />,
+    proposal: <ProposalScreen />,
   }
 
   return (
@@ -39,7 +39,12 @@ export default function Home() {
         </motion.div>
       </AnimatePresence>
 
-      {musicStarted && <Music shouldPlay={musicStarted} />}
+      {musicStarted && (
+        <Music
+          shouldPlay={musicStarted}
+          onEnded={() => setCurrentScreen("proposal")}
+        />
+      )}
     </div>
-  );
+  )
 }

@@ -2,8 +2,18 @@
 
 import { useEffect, useRef } from "react"
 
-export default function Music({ shouldPlay }) {
+export default function Music({ shouldPlay, onEnded }) {
     const audioRef = useRef(null)
+
+    useEffect(() => {
+        const audio = audioRef.current
+        if (!audio) return
+
+        const handleEnded = () => onEnded?.()
+        audio.addEventListener("ended", handleEnded)
+
+        return () => audio.removeEventListener("ended", handleEnded)
+    }, [onEnded])
 
     useEffect(() => {
         if (shouldPlay && audioRef.current) {

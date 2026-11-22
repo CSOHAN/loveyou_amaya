@@ -27,7 +27,7 @@ export default function FirstScreen({ onNext }) {
                     className="text-4xl md:text-6xl text-center mb-5 max-w-3xl text-balance leading-tight text-foreground font-medium"
                 >
                     There is something
-                    I want to tell you
+                    I want to tell you Amaya 🩷
                 </motion.h1>
 
                 <motion.p
